@@ -241,7 +241,7 @@ function OngoingQuestionCard({
           .map((answer: string, index: number) => (
             <div key={index} className="flex items-center gap-2">
               <div className="w-3 h-3 border border-primary-main rounded-full flex-shrink-0 sm:w-4 sm:h-4"></div>
-              <span className="text-sm font-normal sm:text-[20px]">
+              <span className="text-sm text-question font-normal sm:text-[20px]">
                 {answer}
               </span>
             </div>

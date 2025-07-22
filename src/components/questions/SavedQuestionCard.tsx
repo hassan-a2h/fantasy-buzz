@@ -53,7 +53,7 @@ function SavedQuestionCard({
       </div>
 
       <div className="mb-4 sm:mb-7">
-        <h5 className="mb-3 text-base font-semibold text-ternart-font sm:mb-4">
+        <h5 className="mb-3 text-base font-semibold text-ternary-font sm:mb-4">
           {question.question}
         </h5>
 
@@ -71,7 +71,7 @@ function SavedQuestionCard({
                   name={`question_${questionIndex}`}
                   disabled
                 />
-                <span className="text-sm">{answer}</span>
+                <span className="text-sm text-ternary-font">{answer}</span>
               </div>
             ))}
         </div>

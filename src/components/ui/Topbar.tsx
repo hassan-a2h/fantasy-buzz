@@ -29,7 +29,7 @@ function Topbar() {
             </p>
 
             <div className="flex items-center gap-2 sm:gap-5">
-              <p className="text-sm font-medium">Prerit Das</p>
+              <p className="text-sm font-medium text-[#0A0A0A]">Prerit Das</p>
               <ChevronDown className="text-black w-4 h-4 sm:w-auto sm:h-auto" />
             </div>
           </div>

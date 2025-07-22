@@ -10,6 +10,7 @@
   --secondary-font: #c4c5ca;
   --ternary-font: #4c4d4e;
   --lite-font: #bfbfbf;
+  --question-title: #282828;
   --question: #282828;
   --questions-bg: #eff0f3;
   --icons-primary: #4e4e4e;
@@ -38,6 +39,7 @@
   --color-border: var(--border);
   --color-delete-core: var(--delete-core);
   --color-question: var(--question-title);
+  --color-question-title: var(--question-title);
   --color-secondary-boder: var(--secondary-border);
   --color-link-blue: var(--link-blue);
 

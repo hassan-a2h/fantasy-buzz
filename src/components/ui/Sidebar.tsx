@@ -15,7 +15,7 @@ function Sidebar() {
   }
 
   return (
-    <div className="hidden md:flex w-full h-screen bg-primary-bg text-white flex-shrink-0 flex-col px-4 py-8 overflow-y-auto sm:px-6 sm:py-[50px] md:w-[254px]">
+    <div className="hidden md:flex w-full h-screen bg-primary-bg text-white flex-shrink-0 flex-col px-4 py-8 overflow-y-auto sm:px-6 sm:py-[50px] md:w-[254px] overflow-hidden">
       <div className="mb-12 w-full max-w-[150px] mx-auto sm:mb-[106px] md:max-w-full">
         <Image
           src="/images/logo.png"
