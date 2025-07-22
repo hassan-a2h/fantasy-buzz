@@ -3,11 +3,44 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary-main: #12bab0;
+  --primary-bg: #010b28;
+  --secondary-bg: #f0f0f3;
+  --primary-font: #222222;
+  --secondary-font: #c4c5ca;
+  --ternary-font: #4c4d4e;
+  --lite-font: #bfbfbf;
+  --question: #282828;
+  --questions-bg: #eff0f3;
+  --icons-primary: #4e4e4e;
+  --icons-secondary: #050d27;
+  --background-highlight: #e7e7e7;
+  --border: #c2c2c2;
+  --secondary-border: #0629a2;
+  --link-blue: #1c77ff;
+  --delete-core: #ef4444;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary-main: var(--primary-main);
+  --color-primary-bg: var(--primary-bg);
+  --color-secodary-bg: var(--secondary-bg);
+  --color-primary-font: var(--primary-font);
+  --color-secondary-font: var(--secondary-font);
+  --color-questions-bg: var(--questions-bg);
+  --color-icons-primary: var(--icons-primary);
+  --color-icons-secondary: var(--icons-secondary);
+  --color-ternary-font: var(--ternary-font);
+  --color-background-highlight: var(--background-highlight);
+  --color-lite-font: var(--lite-font);
+  --color-border: var(--border);
+  --color-delete-core: var(--delete-core);
+  --color-question: var(--question-title);
+  --color-secondary-boder: var(--secondary-border);
+  --color-link-blue: var(--link-blue);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -20,7 +53,13 @@
 }
 
 body {
-  background: var(--background);
+  background: var(#fff);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
 }
