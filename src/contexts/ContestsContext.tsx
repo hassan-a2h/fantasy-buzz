@@ -1,8 +1,14 @@
 "use client";
 
-import { useState, createContext, useContext } from "react";
+import { useState, createContext, useContext, ReactNode } from "react";
+import {
+  Contest,
+  Question,
+  ContestFormData,
+  ContestContextType,
+} from "@/types/contest";
 
-const ContestContext = createContext();
+const ContestContext = createContext<ContestContextType | undefined>(undefined);
 
 export const useContests = () => {
   const context = useContext(ContestContext);
@@ -12,8 +18,8 @@ export const useContests = () => {
   return context;
 };
 
-export const ContestProvider = ({ children }) => {
-  const [contests, setContests] = useState([
+export const ContestProvider = ({ children }: { children: ReactNode }) => {
+  const [contests, setContests] = useState<Contest[]>([
     {
       id: 1,
       name: "Ongoing Contest",
@@ -83,25 +89,30 @@ export const ContestProvider = ({ children }) => {
     },
   ]);
 
-  const isContestOngoing = (contest) => {
+  const isContestOngoing = (contest: Contest): boolean => {
     const now = new Date();
     const endDateTime = new Date(`${contest.endDate}T${contest.endTime}`);
     return endDateTime > now;
   };
 
-  const getOngoingContest = () => {
+  const getOngoingContest = (): Contest | undefined => {
     return contests.find((contest) => isContestOngoing(contest));
   };
 
-  const getArchivedContests = () => {
+  const getArchivedContests = (): Contest[] => {
     return contests.filter((contest) => !isContestOngoing(contest));
   };
 
-  const addContest = (contest) => {
-    setContests((prev) => [...prev, { ...contest, id: Date.now() }]);
+  const addContest = (
+    contestData: ContestFormData & { questions: Question[] }
+  ): void => {
+    setContests((prev) => [...prev, { ...contestData, id: Date.now() }]);
   };
 
-  const updateContest = (id, updatedContest) => {
+  const updateContest = (
+    id: number | string,
+    updatedContest: Partial<Contest>
+  ): void => {
     setContests((prev) =>
       prev.map((contest) =>
         contest.id === id ? { ...contest, ...updatedContest } : contest
@@ -109,11 +120,15 @@ export const ContestProvider = ({ children }) => {
     );
   };
 
-  const deleteContest = (id) => {
+  const deleteContest = (id: number | string): void => {
     setContests((prev) => prev.filter((contest) => contest.id !== id));
   };
 
-  const updateQuestion = (contestId, questionId, updatedQuestion) => {
+  const updateQuestion = (
+    contestId: number | string,
+    questionId: number | string,
+    updatedQuestion: Partial<Question>
+  ): void => {
     setContests((prev) =>
       prev.map((contest) =>
         contest.id === contestId
@@ -128,7 +143,10 @@ export const ContestProvider = ({ children }) => {
     );
   };
 
-  const deleteQuestion = (contestId, questionId) => {
+  const deleteQuestion = (
+    contestId: number | string,
+    questionId: number | string
+  ): void => {
     setContests((prev) =>
       prev.map((contest) =>
         contest.id === contestId
@@ -141,20 +159,20 @@ export const ContestProvider = ({ children }) => {
     );
   };
 
+  const contextValue: ContestContextType = {
+    contests,
+    addContest,
+    updateContest,
+    deleteContest,
+    getOngoingContest,
+    getArchivedContests,
+    updateQuestion,
+    deleteQuestion,
+    isContestOngoing,
+  };
+
   return (
-    <ContestContext.Provider
-      value={{
-        contests,
-        addContest,
-        updateContest,
-        deleteContest,
-        getOngoingContest,
-        getArchivedContests,
-        updateQuestion,
-        deleteQuestion,
-        isContestOngoing,
-      }}
-    >
+    <ContestContext.Provider value={contextValue}>
       {children}
     </ContestContext.Provider>
   );

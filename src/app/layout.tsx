@@ -1,4 +1,5 @@
 import { Poppins } from "next/font/google";
+import "./globals.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -6,7 +7,6 @@ const poppins = Poppins({
   variable: "--font-poppins",
   display: "swap",
 });
-import "./globals.css";
 
 export const metadata = {
   title: "Fantasy Buzz Admin Portal",
@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={poppins.variable}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link

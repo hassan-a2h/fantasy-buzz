@@ -48,6 +48,62 @@ export interface ContestContextType {
   deleteContest: (id: number | string) => void;
   getOngoingContest: () => Contest | undefined;
   getArchivedContests: () => Contest[];
+  updateQuestion: (
+    contestId: number | string,
+    questionId: number | string,
+    updatedQuestion: Partial<Question>
+  ) => void;
+  deleteQuestion: (
+    contestId: number | string,
+    questionId: number | string
+  ) => void;
+  isContestOngoing: (contest: Contest) => boolean;
 }
 
 export type TabType = "ongoing" | "archived";
+
+export interface ContestFormProps {
+  contest: ContestFormData;
+  setContest: React.Dispatch<React.SetStateAction<ContestFormData>>;
+  errors: ContestValidationErrors;
+}
+
+export interface QuestionsSectionProps {
+  questions: Question[];
+  setQuestions: React.Dispatch<React.SetStateAction<Question[]>>;
+  errors: ContestValidationErrors;
+  addNewQuestion: () => void;
+  handleSubmit: () => void;
+}
+
+export interface QuestionFormProps {
+  question: Question;
+  questionIndex: number;
+  setQuestions: React.Dispatch<React.SetStateAction<Question[]>>;
+  errors: ContestValidationErrors;
+  isEditable: boolean;
+}
+
+export interface SavedQuestionCardProps {
+  question: Question;
+  questionIndex: number;
+  setQuestions: React.Dispatch<React.SetStateAction<Question[]>>;
+}
+
+export interface ArchivedContestCardProps {
+  contest: Contest;
+}
+
+export interface OngoingContestProps {
+  contest: Contest;
+}
+
+export interface OngoingQuestionCardProps {
+  question: Question;
+  questionIndex: number;
+  totalQuestions: number;
+  isExpanded: boolean;
+  onToggleExpanded: () => void;
+  onUpdate: (updatedData: Partial<Question>) => void;
+  onDelete: () => void;
+}

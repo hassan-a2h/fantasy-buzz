@@ -2,10 +2,16 @@
 
 import { useState } from "react";
 import QuestionForm from "./QuestionForm";
-import { Edit } from "lucide-react";
+import Image from "next/image";
+import { SavedQuestionCardProps } from "@/types/contest";
+import React from "react";
 
-function SavedQuestionCard({ question, questionIndex, setQuestions }) {
-  const [isEditing, setIsEditing] = useState(false);
+function SavedQuestionCard({
+  question,
+  questionIndex,
+  setQuestions,
+}: SavedQuestionCardProps) {
+  const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const deleteQuestion = () => {
     setQuestions((prev) => prev.filter((_, i) => i !== questionIndex));
@@ -28,32 +34,40 @@ function SavedQuestionCard({ question, questionIndex, setQuestions }) {
   }
 
   return (
-    <div className="w-[713px] border-1 border-primary-bg rounded-[16px] px-[18px] py-7 mb-4 bg-questions-bg">
+    <div className="w-full border border-primary-bg rounded-[16px] px-4 py-6 mb-4 bg-questions-bg sm:px-[18px] sm:py-7 md:w-[713px]">
       <div className="flex items-center justify-between mb-2">
-        <h4 className="text-[16px] text-primary-main font-bold">
+        <h4 className="text-sm text-primary-main font-bold sm:text-[16px]">
           Question {questionIndex + 1}
         </h4>
         <button
           onClick={editQuestion}
           className="w-6 h-6 hover:cursor-pointer flex items-center justify-center text-gray-500 hover:text-primary-main"
         >
-          <Edit className="w-4 h-4" />
+          <Image
+            src="/images/icons/edit-pen.png"
+            width={24}
+            height={24}
+            alt="edit button"
+          />
         </button>
       </div>
 
-      <div className="mb-7">
-        <h5 className="mb-4 text-ternart-font font-semibold">
+      <div className="mb-4 sm:mb-7">
+        <h5 className="mb-3 text-base font-semibold text-ternart-font sm:mb-4">
           {question.question}
         </h5>
 
-        <div className="mb-4">
+        <div className="mb-3 flex flex-col gap-1 sm:mb-4 sm:gap-0">
           {question.answers
             .filter((a) => a.trim())
-            .map((answer, index) => (
-              <div key={index} className="flex items-center gap-3 mb-2">
+            .map((answer: string, index: number) => (
+              <div
+                key={index}
+                className="flex items-center gap-2 mb-1 sm:gap-3 sm:mb-2"
+              >
                 <input
                   type="radio"
-                  className="border-1 border-ternary-font"
+                  className="border border-ternary-font flex-shrink-0"
                   name={`question_${questionIndex}`}
                   disabled
                 />
@@ -64,23 +78,23 @@ function SavedQuestionCard({ question, questionIndex, setQuestions }) {
       </div>
 
       <div className="text-xs text-gray-500">
-        <div className="mb-5 flex items-center">
+        <div className="mb-3 flex flex-col items-start sm:mb-5 sm:flex-row sm:items-center">
           {" "}
-          <strong className="text-[16px] font-extrabold text-primary-font/80 w-[170px] mr-20">
+          <strong className="text-sm font-extrabold text-primary-font/80 w-auto mb-1 whitespace-nowrap sm:text-[16px] sm:w-[170px] sm:mr-20 sm:mb-0">
             Question Active Till:
           </strong>{" "}
-          <div className="text-[16px] font-normal text-primary-font/80 flex">
+          <div className="text-sm font-normal text-primary-font/80 flex flex-col gap-1 sm:text-[16px] sm:flex-row sm:gap-0">
             {" "}
-            <span className="mr-10">{question.questionEndDate}</span>
+            <span className="mr-0 sm:mr-10">{question.questionEndDate}</span>
             <span>{question.questionEndTime}</span>
           </div>
         </div>
-        <div className="flex items-center">
+        <div className="flex flex-col items-start sm:flex-row sm:items-center">
           {" "}
-          <strong className="text-[16px] font-extrabold text-primary-font/80 w-[170px] mr-10">
+          <strong className="text-sm font-extrabold text-primary-font/80 w-auto mb-1 whitespace-nowrap sm:text-[16px] sm:w-[170px] sm:mr-10 sm:mb-0">
             Source:
           </strong>{" "}
-          <p className="underline text-[16px] font-normal text-primary-font/80">
+          <p className="underline text-sm font-normal text-primary-font/80 sm:text-[16px]">
             Placeholder for the link of the source of answer
           </p>
         </div>

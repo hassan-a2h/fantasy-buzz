@@ -3,15 +3,16 @@ import { useState } from "react";
 import { useContests } from "@/contexts/ContestsContext";
 import OngoingContest from "@/components/contests/OngoingContest";
 import ArchivedContestCard from "@/components/contests/ArchivedContestCard";
+import { Contest, TabType } from "@/types/contest";
 import { useRouter } from "next/navigation";
 
 function ContestsIndex() {
-  const [activeTab, setActiveTab] = useState("ongoing");
+  const [activeTab, setActiveTab] = useState<TabType>("ongoing");
   const { getOngoingContest, getArchivedContests } = useContests();
   const router = useRouter();
 
-  const ongoingContest = getOngoingContest();
-  const archivedContests = getArchivedContests();
+  const ongoingContest: Contest | undefined = getOngoingContest();
+  const archivedContests: Contest[] = getArchivedContests();
 
   function navigateToCreateContest() {
     router.push("/contests/create");
@@ -19,8 +20,10 @@ function ContestsIndex() {
 
   return (
     <div className="max-w-full">
-      <div className="flex justify-between items-center mb-5">
-        <h1 className="text-[28px] text-primary-bg font-bold">Contests</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5 gap-4">
+        <h1 className="text-2xl sm:text-[28px] text-primary-bg font-bold">
+          Contests
+        </h1>
         <button
           onClick={navigateToCreateContest}
           className="hover:cursor-pointer bg-primary-main text-white px-2.5 py-2 rounded-full text-[15px] font-semibold hover:bg-primary-main/90 transition-colors flex items-center gap-2"
@@ -32,7 +35,7 @@ function ContestsIndex() {
       <div className="flex mb-8">
         <button
           onClick={() => setActiveTab("ongoing")}
-          className={`hover:cursor-pointer pb-1 mr-[38px] text-xl font-normal border-b-2 transition-colors ${
+          className={`hover:cursor-pointer pb-1 px-4 sm:px-0 md:mr-[38px] text-lg md:text-xl font-normal border-b-2 transition-colors ${
             activeTab === "ongoing"
               ? "border-primary-bg text-primary-bg !font-bold"
               : "border-transparent text-primary-bg hover:text-primary-bg/80"
@@ -42,7 +45,7 @@ function ContestsIndex() {
         </button>
         <button
           onClick={() => setActiveTab("archived")}
-          className={`hover:cursor-pointer pb-1 text-xl font-normal border-b-2 transition-colors ${
+          className={`hover:cursor-pointer pb-1 px-4 sm:px-0 text-lg md:text-xl font-normal border-b-2 transition-colors ${
             activeTab === "archived"
               ? "border-primary-bg text-primary-bg !font-bold"
               : "border-transparent text-primary-bg hover:text-primary-bg/80"
@@ -69,12 +72,12 @@ function ContestsIndex() {
           {archivedContests.length > 0 ? (
             <>
               <div className="space-y-4 mb-8">
-                {archivedContests.map((contest) => (
+                {archivedContests.map((contest: Contest) => (
                   <ArchivedContestCard key={contest.id} contest={contest} />
                 ))}
               </div>
 
-              <div className="flex justify-start items-center mt-6 text-[20px] font-normal text-primary-bg">
+              <div className="flex justify-start items-center mt-6 text-lg md:text-[20px] font-normal text-primary-bg">
                 <button className="w-8 h-8 rounded bg-primary-bg text-white flex items-center justify-center">
                   1
                 </button>
