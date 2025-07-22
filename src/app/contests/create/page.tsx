@@ -1,8 +1,6 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import Sidebar from "@/components/ui/Sidebar";
-import Topbar from "@/components/ui/Topbar";
 import QuestionsSection from "@/components/questions/QuestionsSection";
 
 function CreateContest() {

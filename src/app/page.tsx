@@ -1,5 +1,11 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 function App() {
-  return <>Contest</>;
+  const router = useRouter();
+  router.push("/contests");
+  return <></>;
 }
 
 export default App;

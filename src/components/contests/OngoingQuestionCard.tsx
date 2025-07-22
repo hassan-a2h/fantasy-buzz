@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import { Trash2, Clock } from "lucide-react";
+import { Clock } from "lucide-react";
 
 function OngoingQuestionCard({
   question,

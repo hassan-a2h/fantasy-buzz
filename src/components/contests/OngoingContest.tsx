@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { Edit, Trash2 } from "lucide-react";
 import { useContests } from "@/contexts/ContestsContext";
 import OngoingQuestionCard from "./OngoingQuestionCard";
 import Image from "next/image";
@@ -49,7 +48,7 @@ function OngoingContest({ contest }) {
           <div className="flex items-center gap-4 mb-1.5 text-[28px] font-semibold text-question">
             <h2 className="">{contest.name}</h2>
             <span className="font-normal">|</span>
-            <span className="font-normal mr-8 md:mr-20">
+            <span className="font-normal mr-4 md:mr-2">
               {formatDateRange("2025-06-01", contest.endDate)}
             </span>
             <span className="font-light">Second timer</span>
@@ -70,7 +69,6 @@ function OngoingContest({ contest }) {
         </div>
       </div>
 
-      {/* Questions List */}
       <div className="space-y-4">
         {contest.questions.map((question, index) => (
           <OngoingQuestionCard
